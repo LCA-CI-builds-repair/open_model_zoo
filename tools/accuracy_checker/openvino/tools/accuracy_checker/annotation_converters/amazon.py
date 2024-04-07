@@ -38,11 +38,15 @@ class DataIterator:
         self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
         self.source_dicts = []
         for source_dict in [uid_voc, mid_voc, cat_voc]:
-            with open(source_dict, 'rb') as source_content:
-                self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))  # nosec B301  # disable pickle check
+            with open(source_dict, 'r', encoding='UTF-8') as source_content:
+                self.source_dicts.append(json.load(source_content))
 
         with open(item_info, "r", encoding='UTF-8') as f_meta:
             meta_map = {}
+            for line in f_meta:
+                key, value = line.strip().split(':')
+                meta_map[key] = value
+
             for line in f_meta:
                 arr = line.strip().split("\t")
                 if arr[0] not in meta_map:
