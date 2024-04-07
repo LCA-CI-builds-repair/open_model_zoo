@@ -799,8 +799,8 @@ def get_config_metrics(config):
         for item in subset_metrics:
             subset_size = item.get('subset_size')
             if size is None or subset_size == size:
-                # first subset_metrics or matching subsample_size
-                metrics = item.get('metrics')
-                break
-    
+            # first subset_metrics or matching subsample_size
+            metrics = item.get('metrics')
+            break
+
     return config.get('metrics',[]) if (metrics is None) else metrics
