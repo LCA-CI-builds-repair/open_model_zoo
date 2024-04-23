@@ -4,8 +4,8 @@
 @sphinxdirective
 
 .. toctree::
-   :maxdepth: 1
-   :hidden:
+   :maxde```bash
+python3 -m pip install .[extra]:hidden:
 
    omz_tools_accuracy_checker_adapters
    omz_tools_accuracy_checker_annotation_converters
