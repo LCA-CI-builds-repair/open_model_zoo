@@ -1,6 +1,10 @@
-# efficientdet-d1-tf
-
-## Use Case and High-Level Description
+# efficientdet-d1-git checkout 341af7d4da7805c3a874877484e133f33c420ec5
+cd efficientdet
+pip install -r requirements.txt
+wget https://storage.googleapis.com/cloud-tpu-checkpoints/efficientdet/coco2/efficientdet-d1.tar.gz
+tar -xvf efficientdet-d1.tar.gz
+# Additional commands for CI
+# Run your tests herease and High-Level Description
 
 The `efficientdet-d1-tf` model is one of the [EfficientDet](https://arxiv.org/abs/1911.09070)
 models  designed to perform object detection. This model was pre-trained in TensorFlow\*.

@@ -1,6 +1,11 @@
 # Model Downloader and other automation tools
 
-Open Model Zoo automation tools contain scripts that automate certain model-related tasks
+O# Navigate to the open_model_zoo/tools/model_tools directory
+cd open_model_zoo/tools/model_tools
+pip install --upgrade pip
+pip install .
+# Additional note
+# NOTE: On Linux and macOS, you may need to type `python3` instead of `python`. You may also need to [install pip](https://pip.pypa.io/en/stable/installation/).l Zoo automation tools contain scripts that automate certain model-related tasks
 based on configuration files in the models' directories.
 
 * Model Downloader: `omz_downloader` downloads model files from online sources

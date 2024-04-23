@@ -1,6 +1,5 @@
-# Speech Recognition DeepSpeech Python\* Demo
-
-This demo shows Automatic Speech Recognition (ASR) with a pretrained Mozilla\* DeepSpeech 0.8.2 model.
+# Speech Recognition DeepSpeech Python\* Demo# Install dependencies inside ctcdecode-numpy directory
+python -m pip install .his demo shows Automatic Speech Recognition (ASR) with a pretrained Mozilla\* DeepSpeech 0.8.2 model.
 
 It works with version 0.6.1 as well, and should also work with other models trained with Mozilla DeepSpeech 0.6.x/0.7.x/0.8.x/0.9.x with ASCII alphabets.
 

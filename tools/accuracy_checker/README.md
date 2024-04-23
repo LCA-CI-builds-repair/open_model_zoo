@@ -1,7 +1,17 @@
 # Deep Learning accuracy validation framework
 
 <!--
-@sphinxdirective
+@spython3 -m pip install virtuale# Ins# Install Accuracy Checker with extra dependencies
+python3 -m pip install .[extra]Accuracy Checker
+python3 -m pip install .
+
+# Task-specific dependencies can be found in the requirements-extra.in filen3 -m virtualenv -p `which python3` <directory_for_environment>
+
+# Activate the virtual environment:
+source <directory_for_environment>/bin/activate
+
+# Virtual environment can be deactivated using the following command:
+deactivatee
 
 .. toctree::
    :maxdepth: 1

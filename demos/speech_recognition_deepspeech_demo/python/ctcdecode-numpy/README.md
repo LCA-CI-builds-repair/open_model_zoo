@@ -1,4 +1,5 @@
-# ctcdecode-numpy Python package
+# ctcdecode-n# Run the following command to install pylint version 2.10.2
+python -m pip install pylint==2.10.2py Python package
 
 ctcdecode-numpy is an implementation of CTC (Connectionist Temporal Classification) beam search decoding for NumPy with optional n-gram language modeling.
 C++ code is based on [Parlance](https://github.com/parlance/ctcdecode), which in turn borrowed liberally from Paddle Paddles' [DeepSpeech](https://github.com/PaddlePaddle/DeepSpeech).

@@ -1,6 +1,11 @@
-# efficientdet-d0-tf
-
-## Use Case and High-Level Description
+# efficientdet-d0-git checkout 341af7d4da7805c3a874877484e133f33c420ec5
+cd efficientdet
+pip install -r requirements.txt
+python -m pip install pylint==2.10.2
+wget https://storage.googleapis.com/cloud-tpu-checkpoints/efficientdet/coco2/efficientdet-d0.tar.gz
+tar -xvf efficientdet-d0.tar.gz
+# Additional commands for CI
+# Run your tests herease and High-Level Description
 
 The `efficientdet-d0-tf` model is one of the [EfficientDet](https://arxiv.org/abs/1911.09070)
 models  designed to perform object detection. This model was pre-trained in TensorFlow\*.
