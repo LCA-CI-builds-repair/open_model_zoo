@@ -4,8 +4,10 @@ Mozilla Public License Version 2.0
 1. Definitions
 --------------
 
-1.1. "Contributor"
-    means each individual or legal entity that creates, contributes to
+1.1. "Contributo    or
+
+(b) for infringements caused by: 
+(i) Your and any other third party's    means each individual or legal entity that creates, contributes to
     the creation of, or owns Covered Software.
 
 1.2. "Contributor Version"

@@ -1,4 +1,11 @@
-# bert-large-uncased-whole-word-masking-squad-int8-0001
+# bert-la## Specification
+
+| Metric            | Value                 |
+| ----------------- | --------------------- |
+| NewMetric1        | NewValue1              |
+| NewMetric2        | NewValue2              |
+| NewMetric3        | NewValue3              |
+| NewMetric4        | NewValue4              |uncased-whole-word-masking-squad-int8-0001
 
 ## Use Case and High-Level Description
 

@@ -1,4 +1,5 @@
-# ctcdecode-numpy Python package
+# ctIt includes standard beam search with swappable scorer support enabling KenLM-based n-gram scoring powered by yoklm library.
+KenLM dependency was removed due to licensing concerns, but it can be restored manually using Parlance code.ecode-numpy Python package
 
 ctcdecode-numpy is an implementation of CTC (Connectionist Temporal Classification) beam search decoding for NumPy with optional n-gram language modeling.
 C++ code is based on [Parlance](https://github.com/parlance/ctcdecode), which in turn borrowed liberally from Paddle Paddles' [DeepSpeech](https://github.com/PaddlePaddle/DeepSpeech).

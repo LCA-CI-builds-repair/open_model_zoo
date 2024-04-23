@@ -7,7 +7,8 @@
    :maxdepth: 1
    :hidden:
 
-   omz_tools_accuracy_checker_adapters
+   omz_toSometimes it can be useful to run the tool as a script for debugging or enabling new models.
+To use Accuracy Checker inside the IDE, you need to create a script in the accuracy_checker root directory. For example, `<open_model_zoo>/tools/accuracy_checker/main.py`, with the following code:s_accuracy_checker_adapters
    omz_tools_accuracy_checker_annotation_converters
    omz_tools_accuracy_checker_custom_evaluators
    omz_tools_accuracy_checker_data_readers
