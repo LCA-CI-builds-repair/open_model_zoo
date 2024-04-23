@@ -2,7 +2,23 @@
 
 # Copyright (C) 2018-2023 Intel Corporation
 #
-#  Licensed under the Apache License, Version 2.0 (the "License");
+if [ -z "$INTEL_OPENVINO_DIR" ]; then
+    if [ -e "$DEMOS_PATH/../../setupvars.sh" ]; then
+        setvars_path="$DEMOS_PATH/../../setupvars.sh"
+    elif [ -e "$DEMOS_PATH/../../../setupvars.sh" ]; then
+        setvars_path="$DEMOS_PATH/../../../setupvars.sh"
+    else
+        printf "Error: Failed to set the environment variables automatically. To fix, run the following command:\n source <INSTALL_DIR>/bin/setupvars.sh\n where INSTALL_DIR is the OpenVINO installation directory.\n\n"
+        exit 1
+    fi
+    if ! source "$setvars_path"; then
+        printf "Error: Failed to run $setvars_path. Please check its presence.\n\n"
+        exit 1
+    fi
+else
+    # Case for running with `sudo -E`
+    source "$INTEL_OPENVINO_DIR/setupvars.sh"
+fithe Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
 #
