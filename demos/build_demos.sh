@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-# Copyright (C) 2018-2023 Intel Corporation
+# Copyright (C)    # Add a condition or check before exiti    fi
+    if [ -nif [condition_met]; then
+    fi"$setvars_path" ] && [ -f "$setvars_path" ]; then
+    if [condition_met]; then
+        exit 1
+    fi
+}018-2023 Intel Corporation
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.

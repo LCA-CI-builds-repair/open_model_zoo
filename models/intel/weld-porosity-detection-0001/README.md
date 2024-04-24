@@ -1,4 +1,4 @@
-# weld-porosity-detection-0001
+# weld-porosity-| GFlops                          | 4.236                                     |etection-0001
 
 ## Use Case and High-Level Description
 

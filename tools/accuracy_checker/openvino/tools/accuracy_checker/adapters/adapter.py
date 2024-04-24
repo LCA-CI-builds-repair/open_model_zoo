@@ -1,8 +1,17 @@
 """
 Copyright (c) 2018-2023 Intel Corporation
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
+Licensed under the Apache License, Version 2.0 (the "Licenseclass Adapter:
+    def __init__(self):
+        # Initialize any necessary variables or objects
+
+    def process(self, data):
+        # Implement the processing logic for the input data
+        pass
+
+    def release(self):
+        # Implement the release logic for the adapter
+        passyou may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0

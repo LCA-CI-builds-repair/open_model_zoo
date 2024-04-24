@@ -6,7 +6,9 @@
 #include <string>
 #include <map>
 
-#include <opencv2/core/core.hpp>
+#include <opencv2/core/c               results.emplace_back(object);
+        }
+    }                                    cv::Size(static_cast<int>(m_width), static_cast<int>(m_height));re.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include "openvino/openvino.hpp"

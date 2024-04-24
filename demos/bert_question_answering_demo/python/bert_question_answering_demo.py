@@ -4,7 +4,35 @@
  Copyright (c) 2020-2023 Intel Corporation
 
  Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
+ you may not use this file except in compliance with the Licen# Import necessary libraries
+from transformers import BertForQuestionAnswering, BertTokenizer
+import torch
+
+# Load pre-trained BERT model for question answering
+model = BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+
+# Input question and context
+question = "What is the capital of France?"
+context = "The capital of France is Paris."
+
+# Tokenize input question and context
+inputs = tokenizer(question, context, return_tensors='pt')
+
+# Generate input IDs and attention masks
+input_ids = inputs['input_ids']
+attention_mask = inputs['attention_mask']
+
+# Perform inference
+start_scores, end_scores = model(input_ids, attention_mask)
+
+# Get the answer
+answer_start = torch.argmax(start_scores)
+answer_end = torch.argmax(end_scores)
+answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[0][answer_start:answer_end+1]))
+
+# Display the answer
+print("Answer:", answer)e.
  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0

@@ -2,7 +2,11 @@
 * Copyright (c) 2020-2023 Intel Corporation
 * SPDX-License-Identifier: Apache-2.0
 *
-* This file is based in part on ctc_beam_search_decoder.cpp from https://github.com/parlance/ctcdecode,
+* This file is based in part on ctc_beam_search_de// Initialize candidates_trie_ object (if needed)
+// candidates_trie_->initialize();
+
+// Update log probs
+candidates_trie_->iterate_to_vec(candidates_);der.cpp from https://github.com/parlance/ctcdecode,
 * commit 431408f22d93ef5ebc4422995111bbb081b971a9 on Apr 4, 2020, 20:54:49 UTC+1.
 **********************************************************************/
 

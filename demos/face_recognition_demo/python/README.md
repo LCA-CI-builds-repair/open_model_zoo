@@ -1,6 +1,6 @@
 # Face Recognition Python\* Demo
 
-This example demonstrates an approach to create interactive applications
+This example demonstrates an approach to create interactive ap  -h, --help            Display help message and exitlications
 for video processing. It shows the basic architecture for building model
 pipelines supporting model placement on different devices and simultaneous
 parallel or sequential execution using OpenVINO library in Python.

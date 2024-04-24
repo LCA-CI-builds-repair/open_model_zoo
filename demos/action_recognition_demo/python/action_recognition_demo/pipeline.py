@@ -1,5 +1,15 @@
 """
- Copyright (c) 2020-2023 Intel Corporation
+ Copyright (c) 2020-2023 Intel Corporaclass Pipeline:
+    def __init__(self):
+        # Initialize any necessary variables or objects
+
+    def process(self, input_data):
+        # Implement the processing logic for the input data
+        pass
+
+    def setup(self):
+        # Implement the setup logic for the pipeline
+        pass
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

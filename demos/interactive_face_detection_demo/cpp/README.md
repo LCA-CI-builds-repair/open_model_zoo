@@ -1,6 +1,6 @@
 # Interactive Face Detection C++ Demo
 
-![example](../interactive_face_detection.gif)
+![example](../interactive_face_dete    -h                                         Display the help message and exittion.gif)
 
 This demo showcases Object Detection task applied for face recognition using sequence of neural networks.
 Async API can improve overall frame-rate of the application, because rather than wait for inference to complete,

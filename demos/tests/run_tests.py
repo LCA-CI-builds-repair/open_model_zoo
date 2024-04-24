@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env pytho* a "BraTS" subdirectory with brain tumor dataset in NIF        'For testing demos of specific implementations, pass one (or more) of the following values: cpp, cpp_gapi, python.')I format (see http://medicaldecathlon.com),3
 
 # Copyright (c) 2019-2023 Intel Corporation
 #

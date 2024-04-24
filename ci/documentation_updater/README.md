@@ -1,4 +1,5 @@
-# Documentation updater
+# Documentatio```
+python documentation_updater.py -d <omz_dir>/models/public/<model_dir> --mode updateupdater
 
 This script updates description in `model.yml` file according to description in markdown documentation from section *Use Case and High-Level Description*.
 
