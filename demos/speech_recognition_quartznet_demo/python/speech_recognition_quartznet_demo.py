@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 """
- Copyright (C) 2018-2023 Intel Corporation
+ Copimport logging
+import sys
+import scipy
+import wave
+
+from openvino.runtime import Core, get_version, PartialShape
+
+logging.basicConfig(format='[ %(levelname)s ] %(message)s', level=logging.DEBUG, stream=sys.stdout)
+
+
+class QuartzNet:
+    pad_to = 16
+    alphabet = " abcdefghijklmnopqrstuvwxyz'"2018-2023 Intel Corporation
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

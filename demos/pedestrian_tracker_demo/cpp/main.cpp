@@ -1,5 +1,21 @@
 // Copyright (C) 2018-2023 Intel Corporation
-// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Id    // Load reid-model.
+    std::shared_ptr<IImageDescriptor> descriptor_fast =
+        std::make_shared<ResizedImageDescriptor>(cv::Size(16, 32), cv::InterpolationFlags::INTER_LINEAR);
+    std::shared_ptr<IDescriptorDistance> distance_fast = std::make_shared<MatchTemplateDistance>();
+
+    tracker->set_descriptor_fast(descriptor_fast);
+    tracker->set_distance_fast(distance_fast);
+
+    if (!reid_model.empty()) {
+        ModelConfigTracker reid_config(reid_model);
+        reid_config.max_batch_size = 16;  // defaulting to 16
+        std::shared_ptr<Descriptor> descriptor_strong =
+            std::make_shared<Descriptor>(reid_config, core, deviceName);
+
+        if (descriptor_strong == nullptr) {
+            throw std::runtime_error("[SAMPLES] internal error - invalid descriptor");
+        }.0
 //
 
 #include <stddef.h>

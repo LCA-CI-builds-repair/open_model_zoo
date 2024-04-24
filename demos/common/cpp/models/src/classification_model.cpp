@@ -1,7 +1,95 @@
 /*
 // Copyright (C) 2020-2023 Intel Corporation
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
+// Licensed under the Apache Licen}
+
+void Classificati    const auto height = inputShape[ov::la    if (nTop > classesNum) {
+        throw std::logic_error("The model provides " + std::to_string(classesNum) + " classes, but " +
+                               std::to_string(nTop) + " labels are requested to be predicted");
+    }
+    if (classesNum == labels.size() + 1) {
+        labels.insert(labels.begin(), "other");
+        slog::warn << "Inserted 'other' label as first." << slog::endl;
+    } else if (classesNum != labels.size()) {
+        throw std::logic_error("Model's number of classes and parsed labels must match (" +
+                               std::to_string(outputShape[1]) + " and " + std::to_string(labels.size()) + ')');
+    }
+
+    ppp.output().tensor().set_element_type(ov::element::f32);
+    model = ppp.build();
+
+    // --------------------------- Adding softmax and topK output  ---------------------------
+    auto nodes = model->get_ops();
+    auto softmaxNodeIt = std::find_if(std::begin(nodes), std::end(nodes), [](const std::shared_ptr<ov::Node>& op) {
+        return std::string(op->get_type_name()) == "Softmax";
+    });
+
+    std::shared_ptr<ov::Node> softmaxNode;
+    if (softmaxNodeIt == nodes.end()) {
+        auto logitsNode = model->get_output_op(0)->input(0).get_source_output().get_node();
+        softmaxNode = std::make_shared<ov::op::v1::Softmax>(logitsNode->output(0), 1);
+    } else {
+        softmaxNode = *softmaxNodeIt;
+    }
+    const auto k = std::make_shared<ov::op::v0::Constant>(ov::element::i32, ov::Shape{}, std::vector<size_t>{nTop});
+    std::shared_ptr<ov::Node> topkNode = std::make_shared<ov::op::v3::TopK>(softmaxNode,
+                                                                            k,
+                                                                            1,
+                                                                            ov::op::v3::TopK::Mode::MAX,
+                                                                            ov::op::v3::TopK::SortType::SORT_VALUES);
+}  if (height != width) {
+        throw std::logic_error("Model input has incorrect image shape. Must be NxN square."
+                               " Got " +
+                               std::to_string(height) + "x" + std::to_string(width) + ".");
+    }
+
+    ov::preprocess::PrePostProcessor ppp(model);
+    inputTransform.setPrecision(ppp, model->input().get_any_name());
+    ppp.input().tensor().set_layout({ "NHWC" });
+
+    if (useAutoResize) {
+        ppp.input().tensor().set_spatial_dynamic_shape();
+
+        ppp.input()
+            .preprocess()
+            .convert_element_type(ov::element::f32)
+            .resize(ov::preprocess::ResizeAlgorithm::RESIZE_LINEAR);
+    }
+    ppp.input().model().set_layout(inputLayout);
+
+    // --------------------------- Prepare output  -----------------------------------------------------
+    if (model->outputs().size() != 1) {
+        throw std::logic_error("Classification model wrapper supports topologies with only 1 output");
+    }
+
+    const ov::Shape& outputShape = model->output().get_shape();
+    if (outputShape.size() != 2 && outputShape.size() != 4) {
+        throw std::logic_error("Classification model wrapper supports topologies only with"
+                               " 2-dimensional or 4-dimensional output");
+    }
+
+    const ov::Layout outputLayout("NCHW");
+    if (outputShape.size() == 4 && (outputShape[ov::layout::height_idx(outputLayout)] != 1 ||
+                                    outputShape[ov::layout::width_idx(outputLayout)] != 1)) {
+        throw std::logic_error("Classification model wrapper supports topologies only"
+                               " with 4-dimensional output which has last two dimensions of size 1");
+    }
+}red_ptr<ov::Model>& model) {
+    // --------------------------- Configure input & output -------------------------------------------------
+    // --------------------------- Prepare input  ------------------------------------------------------
+    if (model->inputs().size() != 1) {
+        throw std::logic_error("Classification model wrapper supports topologies with only 1 input");
+    }
+    const auto& input = model->input();
+    inputsNames.push_back(input.get_any_name());
+
+    const ov::Shape& inputShape = input.get_shape();
+    const ov::Layout& inputLayout = getInputLayout(input);
+
+    if (inputShape.size() != 4 || inputShape[ov::layout::channels_idx(inputLayout)] != 3) {
+        throw std::logic_error("3-channel 4-dimensional model's input is expected");
+    }
+}the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //

@@ -1,8 +1,24 @@
 """
 Copyright (c) 2018-2023 Intel Corporation
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
+Licensed under the Apache License, Version 2.0 (theimport re
+
+# we use regular expression to extract class names
+file_pattern_regex = re.compile(r'\d+_(\w+)\.png')
+labels = list(metadata['label_map'].values())
+annotations = []
+num_iterations = len(test_dir.glob('*.png'))
+# iterate over all png images in test directory
+for image_id, image in enumerate(test_dir.glob('*.png')):
+    # get file name (e.g. from /foo/bar/image.png we get image.png)
+    image_base = str(image.parts[-1])
+
+    # extract class name from file name
+    regex_match = file_pattern_regex.match(image_base)
+    image_label = regex_match.group(1)
+
+    # look up class index in label list
+    class_id = labels.index(image_label) may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0

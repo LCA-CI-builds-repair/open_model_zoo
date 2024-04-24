@@ -8,8 +8,20 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
+# Unless required by applicable law or agreed to in writing, softw                            collect_result(demo.subdirectory, device, case_model_names, execution_time, args.report_file)
+                        if args.log_file:
+                            if test_case_index == 0:
+                                write_log(header, args.log_file)
+                            write_log(test_descr, args.log_file)
+                            write_log(output, args.log_file)
+
+            print()
+
+    print("{} failures:".format(num_failures))
+    for test in failed_tests:
+        print(test)
+
+    sys.exit(0 if num_failures == 0 else 1)ted under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
