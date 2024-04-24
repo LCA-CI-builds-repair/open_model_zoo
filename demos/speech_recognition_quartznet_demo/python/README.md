@@ -1,6 +1,13 @@
-# Speech Recognition QuartzNet Python\* Demo
+# Speech Recognition QuartzNet Pythousage: speech_recognition_quartznet_demo.py [-h] -m MODEL -i INPUT [-d DEVICE]
 
-This demo demonstrates Automatic Speech Recognition (ASR) with pretrained QuartzNet model.
+optional arguments:
+  -h, --help            Show this help message and exit.
+  -m MODEL, --model MODEL
+                        Required. Path to an .xml file with a trained model.
+  -i INPUT, --input INPUT
+                        Required. Path to an audio file in WAV PCM 16 kHz mono format
+  -d DEVICE, --device DEVICE
+                        Optional. Specify the target device to infer on, for example: CPU or GPU or HETERO. The demo will look for a suitable OpenVINO Runtime plugin for this device. Default value is CPU.demonstrates Automatic Speech Recognition (ASR) with pretrained QuartzNet model.
 
 ## How It Works
 

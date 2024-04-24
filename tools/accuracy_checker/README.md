@@ -4,8 +4,13 @@
 @sphinxdirective
 
 .. toctree::
-   :maxdepth: 1
-   :hidden:
+   :maxde```bash
+pytho```bash
+python3 -m pip install --upgrade --force-reinstall .p install .
+
+Accuracy Checker is a modular tool with task-specific dependencies. All specific required modules can be found in the `requirements-extra.in` file.
+
+The standard installation procedure includes only the basic part. To install extra modules, you can execute the following command::hidden:
 
    omz_tools_accuracy_checker_adapters
    omz_tools_accuracy_checker_annotation_converters

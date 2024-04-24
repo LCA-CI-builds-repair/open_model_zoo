@@ -1,5 +1,22 @@
 #
-# This config file requires ctcdecode_numpy Python module for fast_ctc_beam_search_decoder_with_lm.
+# This config file requires ctcdecode_numpy         feature_config:
+          - type: audio_preprocessing
+            base: 257
+            filterbank_channel_count: 40
+            lower_frequency_limit: 20
+            upper_frequency_limit: 8000
+            sample_rate: 16000
+          - type: audio_dct
+            filterbank_channel_count: 40
+            numceps: 26
+          - type: clip_cepstrum
+            context: 9
+            numceps: 26
+          - type: pack_cepstrum
+            step: 16
+
+        metrics:
+          - type: weror fast_ctc_beam_search_decoder_with_lm.
 # Please see open_model_zoo/demos/speech_recognition_deepspeech_demo/python/README.md for installation instructions.
 #
 models:

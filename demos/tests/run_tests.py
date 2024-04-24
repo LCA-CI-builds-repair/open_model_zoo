@@ -1,8 +1,20 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019-2023 Intel Corporation
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Copyright (c) 2019-2023 Intel Corporatio    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter, description=__doc__)
+    parser.add_argument('--demo-build-dir', type=Path, required=True, metavar='DIR',
+                        help='Directory with demo binaries')
+    parser.add_argument('--test-data-dir', type=Path, required=True, metavar='DIR',
+                        help='Directory with test data and where to unzip {COCO128_URL}')
+    parser.add_argument('--demos', metavar='DEMO[,DEMO...]',
+                        help='List of demos to run tests for. Default: test all demos. '
+                             'Options: cpp, cpp_gapi, python')
+    parser.add_argument('--devices', default="CPU GPU",
+                        help='List of devices to test')
+    parser.add_argument('--downloader-cache-dir', type=Path, metavar='DIR',
+                        help='Directory to use as the cache for the model downloader')
+    parser.add_argument('--log-file', type=Path,
+                        help='Path to log file')under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #

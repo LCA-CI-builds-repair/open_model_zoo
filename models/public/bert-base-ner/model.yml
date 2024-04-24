@@ -1,4 +1,10 @@
-# Copyright (c) 2022-2023 Intel Corporation
+# Copyright (c) 2022-2023 Inmodel_name: bert-base-ner
+description: BERT-based Named Entity Recognition (NER) model for natural language processing tasks. The model requires the BERT tokenizer (not included in model details) and the enclosed "vocab.txt" dictionary file.
+task_type: named_entity_recognition
+files:
+  - name: transformers-4.5.1-py3-none-any.whl
+    size: 2060589
+    checksum: e9cb161eef172deac1068d491ed9f7918f5aaa087c9170f8d6356924ade6fd3f2be580c47cef37aa419a2be64db42a28rporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

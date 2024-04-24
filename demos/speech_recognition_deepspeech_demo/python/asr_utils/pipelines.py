@@ -1,10 +1,23 @@
 #
 # Copyright (C) 2021-2023 Intel Corporation
-# SPDX-License-Identifier: Apache-2.0
-#
-import abc
+# SPDX-License-Identifier: Apache-2.0        # Process the blocks and calculate buffer skip length
+        processed, buffer_skip_len = self._process_blocks(buffer, finish=finish)
+        
+        # Reset state if processing is finished
+        if finish:
+            self._reset_state()
+        else:
+            # Update buffer and buffer length for next iteration
+            buffer = buffer[buffer_skip_len:].copy()
+            self._buffer = [buffer]
+            self._buffer_len = self._buffer[0].shape[0]
 
-import numpy as np
+        # Postprocess: Crop alignment padding if necessary
+        if self._cut_alignment and finish and align_right_len > 0:
+            processed[-1] = processed[-1][:-align_right_len]
+
+        # Combine and return the processed output
+        return self._combine_output(processed)mport numpy as np
 
 
 class BlockedSeqPipelineStage(abc.ABC):

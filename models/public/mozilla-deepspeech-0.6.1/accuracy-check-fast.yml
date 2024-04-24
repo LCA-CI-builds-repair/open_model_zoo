@@ -1,5 +1,15 @@
 #
-# This config file requires ctcdecode_numpy Python module for fast_ctc_beam_search_decoder_with_lm.
+# This config file requires ctcdecode_numpy Python        feature_config:
+          - type: mfcc
+            numceps: 26
+          - type: clip_cepstrum
+            context: 9
+            numceps: 26
+          - type: pack_cepstrum
+            step: 16
+
+        metrics:
+          - type: werfor fast_ctc_beam_search_decoder_with_lm.
 # Please see open_model_zoo/demos/speech_recognition_deepspeech_demo/python/README.md for installation instructions.
 #
 models:

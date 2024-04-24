@@ -1,6 +1,16 @@
 # Speech Recognition DeepSpeech Python\* Demo
 
-This demo shows Automatic Speech Recognition (ASR) with a pretrained Mozilla\* DeepSpeech 0.8.2 model.
+This demo shows Automati  -h, --help            Show this help message and exit
+  -i FILENAME, --input FILENAME
+                        Required. Path to an audio file in WAV PCM 16 kHz mono format
+  -d DEVICE, --device DEVICE
+                        Optional. Specify the target device to infer on, for example: CPU or GPU or HETERO. The demo will look for a suitable OpenVINO Runtime plugin for this device. (default is CPU)
+  -m FILENAME, --model FILENAME
+                        Required. Path to an .xml file with a trained model
+  -L FILENAME, --lm FILENAME
+                        Optional. Path to language model file
+  -p NAME, --profile NAME
+                        Required. Choose pre/post-processing profile: mds06x_en for Mozilla DeepSpeech v0.6.x, mds07x_en/mds08x_en/mds09x_en for Mozilla DeepSpeech v0.7.x/v0.8.x/v0.9.x (English), other: filename of aion (ASR) with a pretrained Mozilla\* DeepSpeech 0.8.2 model.
 
 It works with version 0.6.1 as well, and should also work with other models trained with Mozilla DeepSpeech 0.6.x/0.7.x/0.8.x/0.9.x with ASCII alphabets.
 

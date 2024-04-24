@@ -1,7 +1,15 @@
 models:
   - name: mozilla-deepspeech-0.6.1
-    launchers:
-      - framework: openvino
+    launch        feature_config:
+          - type: mfcc
+            context: 9
+            numceps: 26
+          - type: pack_cepstrum
+            step: 16
+
+        metrics:
+          - type: wer
+            reference: 0.0893    - framework: openvino
         adapter:
           type: ctc_beam_search_decoder_with_lm
           probability_out: logits

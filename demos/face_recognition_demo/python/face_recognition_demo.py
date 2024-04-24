@@ -2,8 +2,28 @@
 """
  Copyright (c) 2018-2023 Intel Corporation
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
+ Licensed under the Apache License, Version 2.0    QUEUE_SIZE = 16
+
+    def __init__(self, args):
+        self.allow_grow = args.allow_grow and not args.no_show
+
+        log.info('Initializing Face Recognition Demo')
+        log.info('OpenVINO Runtime Version: {}'.format(get_version()))
+        
+        core = Core()
+
+        self.face_detector = FaceDetector(core, args.m_fd,
+                                          args.fd_input_size,
+                                          confidence_threshold=args.t_fd,
+                                          roi_scale_factor=args.exp_r_fd)
+        self.landmarks_detector = LandmarksDetector(core, args.m_lm)
+        self.face_identifier = FaceIdentifier(core, args.m_reid,
+                                              match_threshold=args.t_id,
+                                              match_algo=args.match_algo)
+
+        self.face_detector.deploy(args.d_fd)
+        self.landmarks_detector.deploy(args.d_lm, self.QUEUE_SIZE)
+        self.face_identifier.deploy(args.d_reid, self.QUEUE_SIZE)u may not use this file except in compliance with the License.
  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0

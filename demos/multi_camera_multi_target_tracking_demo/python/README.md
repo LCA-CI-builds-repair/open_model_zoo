@@ -1,6 +1,18 @@
 # Multi Camera Multi Target Python\* Demo
 
-This demo demonstrates how to run Multi Camera Multi Target (e.g. person or vehicle) demo using OpenVINO™.
+This demo demonstrates how to run Multi Camera Multi Target (e.g. person ```sh
+# Command to run multi-camera multi-target tracking demo with person detection and re-identification models
+python multi_camera_multi_target_tracking_demo.py \
+    -i <path_to_video>/video_1.avi <path_to_video>/video_2.avi \
+    --m_detector <path_to_model>/person-detection-retail-0013.xml \
+    --m_reid <path_to_model>/person-reidentification-retail-0277.xml \
+    --config configs/person.py
+
+# Command to run multi-camera multi-target tracking demo with instance segmentation model
+python multi_camera_multi_target_tracking_demo.py \
+    -i <path_to_video>/video_1.avi <path_to_video>/video_2.avi \
+    --m_segmentation <path_to_model>/instance-segmentation-security-0228.xml \
+    --m_reid <path_to_model>/person-reidentification-retail-0277.xmlmo using OpenVINO™.
 
 ## How It Works
 

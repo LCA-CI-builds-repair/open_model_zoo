@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
 
-# Copyright (C) 2018-2023 Intel Corporation
+# Copyr    echo "Build OpenVINO Runtime demos"if [ -z "$INTEL_OPENVINO_DIR" ]; then
+    if [ -e "$DEMOS_PATH/../../setupvars.sh" ]; then
+        setvars_path="$DEMOS_PATH/../../setupvars.sh"
+    elif [ -e "$DEMOS_PATH/../../../setupvars.sh" ]; then
+        setvars_path="$DEMOS_PATH/../../../setupvars.sh"
+    else
+        printf "Error: Failed to set the environment variables automatically. To fix, run the following command:\n source <INSTALL_DIR>/bin/setupvars.sh\n where INSTALL_DIR is the OpenVINO installation directory.\n\n"
+        exit 1
+    fi
+    if ! source "$setvars_path"; then
+        printf "Unable to run ./setupvars.sh. Please check its presence. \n\n"
+        exit 1
+    fi
+else
+    # Case for running with `sudo -E`
+    source "$INTEL_OPENVINO_DIR/setupvars.sh"
+fi "Options:"
+    echo "  -h, --help                                      Print the help message"
+    echo "  -b=DEMOS_BUILD_DIR, --build_dir=DEMOS_BUILD_DIR Specify the demo build directory"
+    echo "  -DENABLE_PYTHON=y                               Whether to build extension modules for Python demos"
+    echo '  --target=TARGETS                                A space separated list of demos to build. To build more than one specific demo, use quotation marks, e.g., --target="classification_demo segmentation_demo"'
+    echo
+    exit 12018-2023 Intel Corporation
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
