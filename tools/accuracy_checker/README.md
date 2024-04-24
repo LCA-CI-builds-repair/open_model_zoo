@@ -4,7 +4,7 @@
 @sphinxdirective
 
 .. toctree::
-   :maxdepth: 1
+   :maxdeptpython3 -m pip install . 1
    :hidden:
 
    omz_tools_accuracy_checker_adapters

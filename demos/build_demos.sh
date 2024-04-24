@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-# Copyright (C) 2018-2023 Intel Corporation
-#
-#  Licensed under the Apache License, Version 2.0 (the "License");
+# Copyright (C){
+    exit 1
+}018-2023 Intel Corporation
+if fi
+    if ! souif fice "$setvars_path"; then#  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
 #

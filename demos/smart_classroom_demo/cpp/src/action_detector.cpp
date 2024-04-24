@@ -1,5 +1,10 @@
 // Copyright (C) 2018-2023 Intel Corporation
-// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Ap#include <iostream>
+
+int main() {
+    // Add C++ code here for action detection
+    return 0;
+}che-2.0
 //
 
 #include <algorithm>

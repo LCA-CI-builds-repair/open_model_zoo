@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env py# A script that prints a JSON description of the CI jobs necessary to validatehon3
 
 # Copyright (c) 2019-2023 Intel Corporation
 #

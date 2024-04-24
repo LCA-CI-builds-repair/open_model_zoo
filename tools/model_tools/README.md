@@ -1,6 +1,8 @@
 # Model Downloader and other automation tools
 
-Open Model Zoo automation tools contain scripts that automate certain model-related tasks
+Ope# Navigate to the open_model_zoo/tools/model_tools directory
+pip install --upgrade pip
+pip install .del Zoo automation tools contain scripts that automate certain model-related tasks
 based on configuration files in the models' directories.
 
 * Model Downloader: `omz_downloader` downloads model files from online sources
