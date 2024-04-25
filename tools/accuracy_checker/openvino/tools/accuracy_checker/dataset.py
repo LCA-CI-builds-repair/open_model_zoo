@@ -135,6 +135,9 @@ class Dataset:
                     print_info('{key}: {value}'.format(key=key, value=value))
             annotation, meta = Dataset.convert_annotation(config)
             if annotation is not None:
+                return annotation, meta
+        
+        return _convert_annotation()
                 if log:
                     print_info("Annotation conversion for {dataset_name} dataset has been finished".format(
                         dataset_name=config['name']))

@@ -300,7 +300,7 @@ class ModelEvaluator(BaseEvaluator):
                 queued_irs.remove(request_id)
                 ready_irs.append(request_id)
 
-        (_, compute_intermediate_metric_res, metric_interval, ignore_results_formatting,
+            (_, compute_intermediate_metric_res, metric_interval, ignore_results_formatting,
          ignore_metric_reference) = metric_config
         store_only = kwargs.get('store_only', False)
         output_callback = kwargs.get('output_callback')
