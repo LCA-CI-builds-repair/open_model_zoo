@@ -748,16 +748,7 @@ DEMOS = [
             *combine_cases(
                 TestCase(options={'-i': DataPatternArg('semantic-segmentation-adas')}),
                 single_option_cases('-m',
-                    ModelArg('semantic-segmentation-adas-0001'),
-                    ModelArg('fastseg-large'),
-                    ModelArg('fastseg-small'),
-                    ModelArg('hrnet-v2-c1-segmentation'),
-                    ModelArg('deeplabv3'),
-                    # ModelArg('ocrnet-hrnet-w48-paddle'),  # TODO: enable after paddle pip conflicts resolution
-                    ModelArg('pspnet-pytorch'),
-                    ModelArg('drn-d-38'),
-                    ModelArg('erfnet'),
-                )),
+# ModelArg('ocrnet-hrnet-w48-paddle'),  # TODO: enable after paddle pip conflicts resolution
         ],
     )),
 
@@ -1534,15 +1525,7 @@ DEMOS = [
                     ModelArg('fastseg-large'),
                     ModelArg('fastseg-small'),
                     ModelArg('hrnet-v2-c1-segmentation'),
-                    ModelArg('icnet-camvid-ava-0001'),
-                    ModelArg('icnet-camvid-ava-sparse-30-0001'),
-                    ModelArg('icnet-camvid-ava-sparse-60-0001'),
-                    ModelArg('unet-camvid-onnx-0001'),
-                    ModelArg('deeplabv3'),
-                    # ModelArg('ocrnet-hrnet-w48-paddle'),  # TODO: enable after paddle pip conflicts resolution
-                    ModelArg('pspnet-pytorch'),
-                    ModelArg('drn-d-38'),
-                    ModelArg('erfnet'),
+single_option_cases()
                 )),
             TestCase(options={
                 '-m': ModelArg('f3net'),

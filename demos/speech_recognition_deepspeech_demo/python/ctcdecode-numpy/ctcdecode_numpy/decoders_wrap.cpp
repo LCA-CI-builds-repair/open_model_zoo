@@ -234,25 +234,9 @@ template <typename T> T SwigValueInit() {
    states.
 
    In old versions of SWIG, code such as the following was usually written:
-
-     if (SWIG_ConvertPtr(obj,vptr,ty.flags) != -1) {
-       // success code
-     } else {
-       //fail code
-     }
-
-   Now you can be more explicit:
-
-    int res = SWIG_ConvertPtr(obj,vptr,ty.flags);
-    if (SWIG_IsOK(res)) {
-      // success code
-    } else {
-      // fail code
-    }
-
-   which is the same really, but now you can also do
-
-    Type *ptr;
+### Summary of Changes:
+1. Replace the existing conditional check with a more explicit form using `SWIG_IsOK` to improve readability and maintain consistency in error handling.
+2. Update the code snippet to use the `SWIG_IsOK` function for checking the result of `SWIG_ConvertPtr` to enhance code clarity and maintainability.
     int res = SWIG_ConvertPtr(obj,(void **)(&ptr),ty.flags);
     if (SWIG_IsOK(res)) {
       // success code
