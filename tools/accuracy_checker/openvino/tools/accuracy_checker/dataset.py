@@ -125,16 +125,16 @@ class Dataset:
         }
 
     @staticmethod
-    def load_annotation(config, log=True):
-        def _convert_annotation():
-            if log:
-                print_info("Annotation conversion for {dataset_name} dataset has been started".format(
-                    dataset_name=config['name']))
-                print_info("Parameters to be used for conversion:")
-                for key, value in config['annotation_conversion'].items():
-                    print_info('{key}: {value}'.format(key=key, value=value))
-            annotation, meta = Dataset.convert_annotation(config)
-            if annotation is not None:
+def load_annotation(self, config, log=True):
+    def _convert_annotation():
+        if log:
+            print_info("Annotation conversion for {dataset_name} dataset has been started".format(
+                dataset_name=config['name']))
+            print_info("Parameters to be used for conversion:")
+            for key, value in config['annotation_conversion'].items():
+                print_info('{key}: {value}'.format(key=key, value=value))
+        annotation, meta = Dataset.convert_annotation(config)
+        if annotation is not None:
                 if log:
                     print_info("Annotation conversion for {dataset_name} dataset has been finished".format(
                         dataset_name=config['name']))
