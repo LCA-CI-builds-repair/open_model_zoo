@@ -118,6 +118,7 @@ class Dataset:
         }
 
     @staticmethod
+    @staticmethod
     def load_annotation(config, log=True):
         def _convert_annotation():
             if log:

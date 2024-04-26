@@ -82,12 +82,13 @@ def check_environment():
     gs_executable = "gs" if os.name != 'nt' else "gswin64c.exe"
     command = subprocess.run("{} --version".format(gs_executable), stdout=PIPE, stderr=PIPE, check=False, shell=True)
     if command.stderr:
+    command = subprocess.run("gs --version", stdout=PIPE, stderr=PIPE, check=False, shell=True)
+    if command.stderr:
         raise EnvironmentError("ghostscript not installed, please install it: \n{}".format(command.stderr))
+    
     command = subprocess.run("convert --version", stdout=PIPE, stderr=PIPE, check=False, shell=True)
     if command.stderr:
         raise EnvironmentError("imagemagick not installed, please install it: \n{}".format(command.stderr))
-
-
 def crop_image(img, output_path, default_size=None):
     old_im = cv.imread(img, cv.IMREAD_GRAYSCALE)
     img_data = np.copy(old_im)

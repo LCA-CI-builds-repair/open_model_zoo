@@ -762,12 +762,10 @@ class AudioToMelSpectrogram(Preprocessor):
                                          stft_matrix.itemsize))
 
         for bl_s in range(0, stft_matrix.shape[1], n_columns):
-            bl_t = min(bl_s + n_columns, stft_matrix.shape[1])
-
-            # RFFT and Conjugate here to match phase from DPWE code
-            rfft = fft_window * y_frames[:, bl_s:bl_t]
-            stft_matrix[:, bl_s:bl_t] = np.fft.rfft(rfft, axis=0)[:stft_matrix.shape[0]]
-
+class AudioPreprocessing:
+    def stft(self, y, fft_size, hop_size, win_size):
+        # Calculate STFT
+        stft_matrix = self._stft(y, fft_size, hop_size, win_size)
         return stft_matrix
 
     @staticmethod

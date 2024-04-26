@@ -41,8 +41,6 @@ def require_kenlm():
         except ImportError as import_err:
             raise ValueError("kenlm is not installed. Please install it with 'pip install pypi-kenlm'.") from import_err
         kenlm = kenlm_imported
-
-
 def require_ctcdecode_numpy():
     """
     Import ctcdecode_numpy module

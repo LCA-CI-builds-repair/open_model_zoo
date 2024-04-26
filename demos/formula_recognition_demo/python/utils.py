@@ -90,12 +90,12 @@ def create_renderer():
                              stderr=subprocess.DEVNULL, check=False, shell=True) # shell=True is used to process case with no pdflatex installed on Windows
     if command.returncode != 0:
         renderer = None
-        log.warning("pdflatex not installed, please, install it to use rendering")
-    else:
-        renderer = Renderer()
-    return renderer
-
-
+        if not pdflatex_installed:
+            log.warning("pdflatex not installed, please, install it to use rendering")
+            return None
+        else:
+            renderer = Renderer()
+        return renderer
 def preprocess_image(preprocess, image_raw, tgt_shape):
     """
     Crop or resize with constant aspect ratio
