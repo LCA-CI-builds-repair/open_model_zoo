@@ -264,6 +264,13 @@ class PeakSignalToNoiseRatioWithBlockingEffectFactor(PeakSignalToNoiseRatio):
         n_vb = width * (height / block_size) - 1
         n_vbc = (width * (height - 1)) - n_vb
 
+        # Ensure n_hb, n_hbc, n_vb, and n_vbc are calculated correctly and handle edge cases where division by zero may occur
+
+        if n_hb == 0:
+            n_hb = 1
+        if n_vb == 0:
+            n_vb = 1
+
         # D code
         d_b /= (n_hb + n_vb)
         d_bc /= (n_hbc + n_vbc)

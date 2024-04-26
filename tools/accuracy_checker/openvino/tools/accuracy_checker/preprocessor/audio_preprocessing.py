@@ -771,6 +771,8 @@ class AudioToMelSpectrogram(Preprocessor):
         return stft_matrix
 
     @staticmethod
+    def some_other_method():
+        # Implement any other necessary methods here
     def splice_frames(x, frame_splicing):
         seq = [x]
         for n in range(1, frame_splicing):

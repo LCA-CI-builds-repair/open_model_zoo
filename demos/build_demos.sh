@@ -81,7 +81,12 @@ if [ -z "$INTEL_OPENVINO_DIR" ]; then
     fi
 else
     # case for run with `sudo -E`
-    source "$INTEL_OPENVINO_DIR/setupvars.sh"
+    if [ -f "$INTEL_OPENVINO_DIR/setupvars.sh" ]; then
+        source "$INTEL_OPENVINO_DIR/setupvars.sh"
+    else
+        printf "Unable to find setupvars.sh in the specified directory. Please check the path. \n\n"
+        exit 1
+    fi
 fi
 
 # CentOS 7 has two packages: cmake of version 2.8 and cmake3. install_openvino_dependencies.sh installs cmake3

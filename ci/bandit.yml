@@ -7,6 +7,7 @@
 ### Bandit at runtime.
 
 # Available tests:
+# Add the necessary test IDs to the 'tests' and 'skips' lists
 # B101 : assert_used
 # B102 : exec_used
 # B103 : set_bad_file_permissions

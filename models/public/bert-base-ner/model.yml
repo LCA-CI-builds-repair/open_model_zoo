@@ -34,6 +34,7 @@ files:
     checksum: e9cb161eef172deac1068d491ed9f7918f5aaa087c9170f8d6356924ade6fd3f2be580c47cef37aa419a2be64db42a28
     source: https://files.pythonhosted.org/packages/d8/b2/57495b5309f09fa501866e225c84532d1fd89536ea62406b2181933fb418/transformers-4.5.1-py3-none-any.whl
   - name: bert-base-ner/pytorch_model.bin
+    # Add any necessary details or configurations for the pytorch_model.bin file
     size: 433316646
     checksum: 59e6fefd0f29534cab9681891a15e9762b1d2dd8d047f55a792b39243631a008ac91a0e354f2ca2aa942be443540a8cb
     original_source: https://huggingface.co/dslim/bert-base-NER/resolve/main/pytorch_model.bin

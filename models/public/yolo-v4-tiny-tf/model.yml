@@ -46,7 +46,7 @@ files:
     checksum: 387ffb240df5f9c81355145a72a5d6bba085db3118b0f61ad214d3d3491e957f3b3ab9498eb8b873c098404fa5235cb7
     source: https://github.com/david8862/keras-YOLOv3-model-set/raw/6b4a0ee63771262363e8224b0ee915cad6c5e93e/cfg/yolov4-tiny.cfg
 postprocessing:
-  # disable imports that aren't needed for this model and code that uses them
+  # Update or correct the postprocessing directives as needed
   - $type: regex_replace
     file: keras-YOLOv3-model-set/common/utils.py
     pattern: 'import cv2,|from (matplotlib|PIL|common\.backbones)\b'

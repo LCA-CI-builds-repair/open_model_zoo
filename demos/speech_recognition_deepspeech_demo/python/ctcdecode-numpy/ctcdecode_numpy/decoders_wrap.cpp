@@ -222,7 +222,6 @@ template <typename T> T SwigValueInit() {
 /* Flags for new pointer objects */
 #define SWIG_POINTER_OWN           0x1
 
-
 /*
    Flags/methods for returning states.
 
@@ -243,30 +242,19 @@ template <typename T> T SwigValueInit() {
 
    Now you can be more explicit:
 
-    int res = SWIG_ConvertPtr(obj,vptr,ty.flags);
-    if (SWIG_IsOK(res)) {
-      // success code
-    } else {
-      // fail code
-    }
-
-   which is the same really, but now you can also do
-
     Type *ptr;
     int res = SWIG_ConvertPtr(obj,(void **)(&ptr),ty.flags);
     if (SWIG_IsOK(res)) {
       // success code
-      if (SWIG_IsNewObj(res) {
-        ...
-	delete *ptr;
+      if (SWIG_IsNewObj(res)) {
+        delete ptr;
       } else {
-        ...
+        // additional processing
       }
     } else {
       // fail code
     }
-
-   I.e., now SWIG_ConvertPtr can return new objects and you can
+*/
    identify the case and take care of the deallocation. Of course that
    also requires SWIG_ConvertPtr to return new result values, such as
 
@@ -13708,21 +13696,16 @@ static swig_const_info swig_const_table[] = {
  * The cast_initial array is actually an array of arrays, because each row has
  * a variable number of columns. So to actually build the cast linked list,
  * we find the array of casts associated with the type, and loop through it
- * adding the casts to the list. The one last trick we need to do is making
- * sure the type pointer in the swig_cast_info struct is correct.
  *
- * First off, we lookup the cast->type name to see if it is already loaded.
- * There are three cases to handle:
- *  1) If the cast->type has already been loaded AND the type we are adding
- *     casting info to has not been loaded (it is in this module), THEN we
- *     replace the cast->type pointer with the type pointer that has already
- *     been loaded.
- *  2) If BOTH types (the one we are adding casting info to, and the
- *     cast->type) are loaded, THEN the cast info has already been loaded by
- *     the previous module so we just ignore it.
- *  3) Finally, if cast->type has not already been loaded, then we add that
- *     swig_cast_info to the linked list (because the cast->type) pointer will
- *     be correct.
+ * The generated swig_type_info structures are assigned statically to an initial
+ * array. We iterate through that array to handle each type individually.
+ * Firstly, we check if the type has already been loaded, and if so, we use the
+ * loaded structure instead of the generated one. Then, we populate the
+ * cast linked list. The cast data is initially stored in a two-dimensional array,
+ * where each row corresponds to a type. To build the cast linked list,
+ * we iterate through the array of casts associated with the type, adding them to the list.
+ * It is crucial to ensure that the type pointer in the swig_cast_info struct is correct.
+ *
  * ----------------------------------------------------------------------------- */
 
 #ifdef __cplusplus

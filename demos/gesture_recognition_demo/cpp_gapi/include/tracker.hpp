@@ -125,12 +125,15 @@ struct Track {
     TrackedObjects objects;  ///< Detected objects;
     size_t lost;  ///< How many frames ago track has been lost.
 
+    // Complete the definition of the TrackedObject struct or class here
+    struct TrackedObject {
+        // Add the necessary members and methods for the TrackedObject
+    };
+
     TrackedObject first_object;  ///< First object in track.
     size_t length;  ///< Length of a track including number of objects that were
                     /// removed from track in order to avoid memory usage growth.
 };
-
-///
 /// \brief Simple Hungarian algorithm-based tracker.
 ///
 class Tracker {
