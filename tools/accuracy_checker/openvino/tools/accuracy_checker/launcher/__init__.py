@@ -19,17 +19,18 @@ from .launcher import Launcher, create_launcher, unsupported_launcher
 from .input_feeder import InputFeeder
 
 try:
+try:
     from .caffe_launcher import CaffeLauncher
 except ImportError as import_error:
     CaffeLauncher = unsupported_launcher(
-        'caffe', "Caffe isn't installed. Please, install it before using. \n{}".format(import_error.msg)
+        'caffe', "Caffe isn't installed. Please, install it before using. \n{}".format(import_error)
     )
 
 try:
     from .mxnet_launcher import MxNetLauncher
 except ImportError as import_error:
     MxNetLauncher = unsupported_launcher(
-        'mxnet', "MXNet isn't installed. Please, install it before using.\n{}".format(import_error.msg)
+        'mxnet', "MXNet isn't installed. Please, install it before using.\n{}".format(import_error)
     )
 
 try:
