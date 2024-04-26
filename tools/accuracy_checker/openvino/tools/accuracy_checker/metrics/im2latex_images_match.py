@@ -82,8 +82,10 @@ def check_environment():
     gs_executable = "gs" if os.name != 'nt' else "gswin64c.exe"
     command = subprocess.run("{} --version".format(gs_executable), stdout=PIPE, stderr=PIPE, check=False, shell=True)
     if command.stderr:
+    command = subprocess.run("gs --version", stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False, shell=True)
+    if command.stderr:
         raise EnvironmentError("ghostscript not installed, please install it: \n{}".format(command.stderr))
-    command = subprocess.run("convert --version", stdout=PIPE, stderr=PIPE, check=False, shell=True)
+    command = subprocess.run("convert --version", stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False, shell=True)
     if command.stderr:
         raise EnvironmentError("imagemagick not installed, please install it: \n{}".format(command.stderr))
 

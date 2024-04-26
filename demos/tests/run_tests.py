@@ -71,6 +71,7 @@ def build_argparser():
     parser.add_argument('--test-data-dir', type=Path, required=True, metavar='DIR',
         help='directory with test data and where to unzip {COCO128_URL}')
     parser.add_argument('--demos', metavar='DEMO[,DEMO...]',
+    parser.add_argument('--demos', default=None,
         help='list of demos to run tests for (by default, every demo is tested). '
         'For testing demos of specific implementation pass one (or more) of the next values: cpp, cpp_gapi, python.')
     parser.add_argument('--devices', default="CPU GPU",
