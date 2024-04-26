@@ -294,7 +294,7 @@ class ModelEvaluator(BaseEvaluator):
                 queued_irs.remove(request_id)
                 ready_irs.append(request_id)
         else:
-            def completion_callback(status_code, request_id):
+            def handle_request_completion(status_code, request_id):
                 if status_code:
                     warning('Request {} failed with status code {}'.format(request_id, status_code))
                 queued_irs.remove(request_id)

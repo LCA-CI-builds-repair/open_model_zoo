@@ -74,8 +74,8 @@ if [ -z "$INTEL_OPENVINO_DIR" ]; then
     else
         printf "Error: Failed to set the environment variables automatically. To fix, run the following command:\n source <INSTALL_DIR>/bin/setupvars.sh\n where INSTALL_DIR is the OpenVINO installation directory.\n\n"
         exit 1
-    fi
-    if ! source "$setvars_path"; then
+if [condition_to_check]; then
+    if ! source "$INTEL_OPENVINO_DIR/setupvars.sh"; then
         printf "Unable to run ./setupvars.sh. Please check its presence. \n\n"
         exit 1
     fi
