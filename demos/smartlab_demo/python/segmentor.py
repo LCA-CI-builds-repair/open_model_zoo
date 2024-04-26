@@ -203,7 +203,6 @@ class SegmentorMstcn:
         ### run mobilenet ###
         self.feature_embedding(frame_top, frame_side)
         feature = self.mobileNet_request.get_tensor(self.mobileNet_output_key[0]).data.reshape(1152, 1)
-        # ### run mstcn++ ###
         return self.action_segmentation(feature)
 
     def feature_embedding(self, frame_top, frame_side):

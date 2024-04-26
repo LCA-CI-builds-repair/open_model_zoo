@@ -136,7 +136,7 @@ class Downloader:
                     # no sense in retrying - if the file is longer, there's no way it'll fix itself
                     return None
                 elif progress.size < size:
-                    reporter.log_error("Downloaded file is shorter ({} B) than expected ({} B)",
+                    reporter.log_error("Downloaded file size ({}) is shorter than expected size ({}). Aborting download.",
                         progress.size, size)
                     # it's possible that we got disconnected before receiving the full file,
                     # so try again

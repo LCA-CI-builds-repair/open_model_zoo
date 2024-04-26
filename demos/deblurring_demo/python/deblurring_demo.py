@@ -135,7 +135,12 @@ def main():
             pipeline.await_any()
 
         if pipeline.callback_exceptions:
+        try:
             raise pipeline.callback_exceptions[0]
+        except Exception as e:
+            # Handle the exception
+            pass
+
         # Process all completed requests
         results = pipeline.get_result(next_frame_id_to_show)
         if results:

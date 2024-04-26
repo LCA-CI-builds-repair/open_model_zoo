@@ -234,13 +234,11 @@ template <typename T> T SwigValueInit() {
    states.
 
    In old versions of SWIG, code such as the following was usually written:
-
      if (SWIG_ConvertPtr(obj,vptr,ty.flags) != -1) {
        // success code
      } else {
        //fail code
      }
-
    Now you can be more explicit:
 
     int res = SWIG_ConvertPtr(obj,vptr,ty.flags);

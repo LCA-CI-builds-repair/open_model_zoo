@@ -258,13 +258,13 @@ class PeakSignalToNoiseRatioWithBlockingEffectFactor(PeakSignalToNoiseRatio):
             diff = im[j, :] - im[j + 1, :]
             d_bc += np.sum(np.square(diff))
 
-        # N code
+        # Calculate N values
         n_hb = height * (width / block_size) - 1
         n_hbc = (height * (width - 1)) - n_hb
         n_vb = width * (height / block_size) - 1
         n_vbc = (width * (height - 1)) - n_vb
 
-        # D code
+        # Calculate D values
         d_b /= (n_hb + n_vb)
         d_bc /= (n_hbc + n_vbc)
 

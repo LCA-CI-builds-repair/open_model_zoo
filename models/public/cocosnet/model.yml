@@ -92,7 +92,7 @@ postprocessing:
     replacement: '# \g<0>'
   - $type: regex_replace
     file: model_files/models/networks/correspondence.py
-    pattern: '/ self.opt.down\)'
+    pattern: '\/ self.opt.down\)'
     replacement: '// self.opt.down)'
   # MO can only convert Squeeze with fixed dimensions
   - $type: regex_replace
