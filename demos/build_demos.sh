@@ -76,7 +76,7 @@ if [ -z "$INTEL_OPENVINO_DIR" ]; then
         exit 1
     fi
     if ! source "$setvars_path"; then
-        printf "Unable to run ./setupvars.sh. Please check its presence. \n\n"
+        printf "Failed to run ./setupvars.sh. Please ensure its presence. \n\n"
         exit 1
     fi
 else

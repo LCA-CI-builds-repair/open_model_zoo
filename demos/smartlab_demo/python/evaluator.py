@@ -459,9 +459,7 @@ class Evaluator(object):
 
         Used to correct angle in adjust_rider (roundscrew1 and rider) and balance(roundscrew2 and pointerhead)
         """
-        [left_x, left_y] = left
-        [right_x, right_y] = right
-        [center_x, center_y] = center
+        (left_x, left_y), (right_x, right_y), (center_x, center_y) = left, right, center
 
         # theta is the angle need to be rotated so that two roundscrew2 is horizontal
         if right_x - left_x != 0:  # to avoid num/zero = infinity

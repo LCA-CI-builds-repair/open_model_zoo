@@ -400,8 +400,8 @@ class TestUpdateRegressionMetrics:
         dispatcher = MetricsExecutor(config, None)
 
         metric_result, _ = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
-        assert metric_result[0][0].result == 4
-        assert metric_result[1][0].result == 16
+        assert metric_result[0][0].result == 4, "Expected result for metric 0 is 4"
+        assert metric_result[1][0].result == 16, "Expected result for metric 1 is 16"
 
     def test_update_rmse_metric_result(self):
         annotations = [RegressionAnnotation('identifier', 3), RegressionAnnotation('identifier2', 1)]

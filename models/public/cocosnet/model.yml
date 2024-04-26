@@ -92,7 +92,7 @@ postprocessing:
     replacement: '# \g<0>'
   - $type: regex_replace
     file: model_files/models/networks/correspondence.py
-    pattern: '/ self.opt.down\)'
+    pattern: ' self.opt.down\)'
     replacement: '// self.opt.down)'
   # MO can only convert Squeeze with fixed dimensions
   - $type: regex_replace
@@ -106,7 +106,7 @@ postprocessing:
     replacement: 'torch.tanh'
   - $type: regex_replace
     file: model_files/util/util.py
-    pattern: 'colormap = scio.loadmat\(.\./util/color150.mat.\)\[.colors.\]'
+    pattern: 'colormap = scio.loadmat\(\.\./util/color150\.mat\)\[\.colors\.\]'
     replacement: "# colormap = scio.loadmat('./util/color150.mat')['colors']"
 conversion_to_onnx_args:
   - --model-path=$config_dir

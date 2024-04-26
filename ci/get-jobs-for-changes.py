@@ -15,10 +15,11 @@
 # limitations under the License.
 
 """
+"""
 A script that prints a JSON description of the CI jobs necessary to validate
 the changes made between a base commit and the current commit.
 
-The output format is a an object where each key is the identifier of the job
+The output format is an object where each key is the identifier of the job
 and the corresponding value represents that job's parameters. The value
 is usually just "true" (which just means that the job should be run), but
 for the "models" job the value can be an array of names of models that should

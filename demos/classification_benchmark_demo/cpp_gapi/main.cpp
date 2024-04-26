@@ -145,10 +145,9 @@ int main(int argc, char* argv[]) {
         inference_backends_t backends = util::ParseInferenceBackends(FLAGS_backend);
         nets += create_execution_network<nets::Classification>(FLAGS_m,
                                                                BackendsConfig {config,
-                                                                              FLAGS_mean_values,
                                                                               FLAGS_scale_values},
-                                                               backends);
-        auto pipeline = comp.compileStreaming(cv::compile_args(custom::kernels(),
+                                                               backends});
+        auto pipeline = comp.compileStreaming(cv::compile_args(custom::kernels()));
                                               nets,
                                               cv::gapi::streaming::queue_capacity{1}));
 

@@ -234,7 +234,6 @@ template <typename T> T SwigValueInit() {
    states.
 
    In old versions of SWIG, code such as the following was usually written:
-
      if (SWIG_ConvertPtr(obj,vptr,ty.flags) != -1) {
        // success code
      } else {
@@ -256,9 +255,9 @@ template <typename T> T SwigValueInit() {
     int res = SWIG_ConvertPtr(obj,(void **)(&ptr),ty.flags);
     if (SWIG_IsOK(res)) {
       // success code
-      if (SWIG_IsNewObj(res) {
+      if (SWIG_IsNewObj(res)) {
         ...
-	delete *ptr;
+	      delete *ptr;
       } else {
         ...
       }

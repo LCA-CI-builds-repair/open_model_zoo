@@ -61,6 +61,7 @@ public:
     using callback_t
         = std::function<void(frame_status, const settings&, frame)>;
 
+    public:
     camera(controller& owner_, string_ref name_, callback_t callback_,
            const settings& params_);
     ~camera();

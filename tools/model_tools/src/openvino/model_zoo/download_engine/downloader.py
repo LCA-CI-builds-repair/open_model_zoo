@@ -132,12 +132,11 @@ class Downloader:
                 self._process_download(reporter, chunk_iterable, size, progress, file)
 
                 if progress.size > size:
-                    reporter.log_error("Remote file is longer than expected ({} B), download aborted", size)
+                    reporter.log_error("Remote file is longer than expected ({} B), download aborted".format(size))
                     # no sense in retrying - if the file is longer, there's no way it'll fix itself
                     return None
                 elif progress.size < size:
-                    reporter.log_error("Downloaded file is shorter ({} B) than expected ({} B)",
-                        progress.size, size)
+                    reporter.log_error("Downloaded file is shorter ({} B) than expected ({} B)".format(progress.size, size))
                     # it's possible that we got disconnected before receiving the full file,
                     # so try again
                 else:
