@@ -29,13 +29,14 @@ except OSError:
     import librosa
 
 import numpy as np
+import logging
+import sys
 import scipy
 import wave
 
 from openvino.runtime import Core, get_version, PartialShape
 
-log.basicConfig(format='[ %(levelname)s ] %(message)s', level=log.DEBUG, stream=sys.stdout)
-
+logging.basicConfig(format='[ %(levelname)s ] %(message)s', level=logging.DEBUG, stream=sys.stdout)
 
 class QuartzNet:
     pad_to = 16
@@ -123,7 +124,7 @@ def main():
         assert compression_type == 'NONE', "Only linear PCM WAV files supported"
         assert channel_num == 1, "Only mono WAV PCM supported"
         assert sampling_rate == 16000, "Only 16 KHz audio supported"
-        audio = np.frombuffer(wave_read.readframes(pcm_length * channel_num), dtype=np.int16).reshape((pcm_length, channel_num))
+# Add your code snippet here
 
     log_melspectrum = QuartzNet.audio_to_melspectrum(audio.flatten(), sampling_rate)
 

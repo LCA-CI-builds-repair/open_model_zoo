@@ -234,37 +234,34 @@ template <typename T> T SwigValueInit() {
    states.
 
    In old versions of SWIG, code such as the following was usually written:
+if (SWIG_ConvertPtr(obj, vptr, ty.flags) != -1) {
+  // success code
+} else {
+  // fail code
+}
 
-     if (SWIG_ConvertPtr(obj,vptr,ty.flags) != -1) {
-       // success code
-     } else {
-       //fail code
-     }
+// Updated approach with explicit checks
+int res = SWIG_ConvertPtr(obj, vptr, ty.flags);
+if (SWIG_IsOK(res)) {
+  // success code
+} else {
+  // fail code
+}
 
-   Now you can be more explicit:
-
-    int res = SWIG_ConvertPtr(obj,vptr,ty.flags);
-    if (SWIG_IsOK(res)) {
-      // success code
-    } else {
-      // fail code
-    }
-
-   which is the same really, but now you can also do
-
-    Type *ptr;
-    int res = SWIG_ConvertPtr(obj,(void **)(&ptr),ty.flags);
-    if (SWIG_IsOK(res)) {
-      // success code
-      if (SWIG_IsNewObj(res) {
-        ...
-	delete *ptr;
-      } else {
-        ...
-      }
-    } else {
-      // fail code
-    }
+// More detailed handling with object deletion
+Type *ptr;
+int res = SWIG_ConvertPtr(obj, (void **)(&ptr), ty.flags);
+if (SWIG_IsOK(res)) {
+  // success code
+  if (SWIG_IsNewObj(res)) {
+    // Additional actions for new object
+    delete *ptr;
+  } else {
+    // Other actions for existing object
+  }
+} else {
+  // fail code
+}
 
    I.e., now SWIG_ConvertPtr can return new objects and you can
    identify the case and take care of the deallocation. Of course that

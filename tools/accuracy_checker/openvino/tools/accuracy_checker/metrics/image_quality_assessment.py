@@ -254,6 +254,9 @@ class PeakSignalToNoiseRatioWithBlockingEffectFactor(PeakSignalToNoiseRatio):
             d_b += np.sum(np.square(diff))
 
         # V_bc for loop
+        d_b = 0  # Initialize d_b
+        d_bc = 0  # Initialize d_bc
+
         for j in list(v_bc):
             diff = im[j, :] - im[j + 1, :]
             d_bc += np.sum(np.square(diff))

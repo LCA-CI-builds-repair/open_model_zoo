@@ -25,6 +25,7 @@ from pathlib import Path
 from ruamel.yaml.scalarstring import FoldedScalarString
 from sys import exit
 
+# Utilize the defined lists or remove them if unnecessary
 MODES = [
     'check',
     'update'

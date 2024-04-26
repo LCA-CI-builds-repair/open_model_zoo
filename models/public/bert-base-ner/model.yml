@@ -26,7 +26,8 @@ description: >-
   papers and repository <https://github.com/huggingface/transformers>
 
   Tokenization occurs using the BERT tokenizer (see the demo code for implementation
-  details) and the enclosed "vocab.txt" dictionary file.
+details:
+  - Ensure the model files include the necessary components (e.g., config, model weights, tokenizer details) and the enclosed "vocab.txt" dictionary file.
 task_type: named_entity_recognition
 files:
   - name: transformers-4.5.1-py3-none-any.whl

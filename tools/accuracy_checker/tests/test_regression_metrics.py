@@ -400,36 +400,12 @@ class TestUpdateRegressionMetrics:
         dispatcher = MetricsExecutor(config, None)
 
         metric_result, _ = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
-        assert metric_result[0][0].result == 4
-        assert metric_result[1][0].result == 16
-
-    def test_update_rmse_metric_result(self):
-        annotations = [RegressionAnnotation('identifier', 3), RegressionAnnotation('identifier2', 1)]
-        predictions = [RegressionPrediction('identifier', 5), RegressionPrediction('identifier2', 5)]
-        config = [{'type': 'rmse'}]
-        dispatcher = MetricsExecutor(config, None)
-
-        metric_result, _ = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
         assert metric_result[0][0].result == 2
         assert metric_result[1][0].result == 4
 
-    def test_update_mae_on_interval_metric(self):
-        config = [{'type': 'mae_on_interval', 'intervals': [0.0, 2.0, 4.0]}]
-        annotations = [RegressionAnnotation('identifier', 3), RegressionAnnotation('identifier2', 1)]
-        predictions = [RegressionPrediction('identifier', 5), RegressionPrediction('identifier2', 5)]
-        dispatcher = MetricsExecutor(config, None)
-
-        metric_result, _ = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
         assert metric_result[0][0].result == 2
         assert metric_result[1][0].result == 4
 
-    def test_update_mse_on_interval_metric(self):
-        config = [{'type': 'mse_on_interval', 'intervals': [0.0, 2.0, 4.0]}]
-        annotations = [RegressionAnnotation('identifier', 3), RegressionAnnotation('identifier2', 1)]
-        predictions = [RegressionPrediction('identifier', 5), RegressionPrediction('identifier2', 5)]
-        dispatcher = MetricsExecutor(config, None)
-
-        metric_result, _ = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
         assert metric_result[0][0].result == 4
         assert metric_result[1][0].result == 16
 

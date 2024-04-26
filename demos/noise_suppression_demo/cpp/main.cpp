@@ -86,9 +86,9 @@ void read_wav(const std::string& file_name, RiffWaveHeader& wave_header, std::ve
     // only mono
     CHECK_IF(wave_header.num_of_channels != 1);
     // only 16 bit
-    CHECK_IF(wave_header.bits_per_sample != 16);
+    CHECK_IF((wave_header.bits_per_sample != 16));
     // make sure that data chunk follows file header
-    CHECK_IF(wave_header.data_tag != fourcc("data"));
+    CHECK_IF((wave_header.data_tag != fourcc("data")));
     #undef CHECK_IF
 
     if (!error_msg.empty()) {
