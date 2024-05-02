@@ -46,6 +46,7 @@ except NameError:
 try:
     import builtins as __builtin__
 except ImportError:
+    pass
     import __builtin__
 
 def _swig_setattr_nondynamic(self, class_type, name, value, static=1):

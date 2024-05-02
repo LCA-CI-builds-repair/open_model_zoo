@@ -145,3 +145,4 @@ class ActionDetectionAnnotation(AttributeDetectionAnnotation):
 
 class ActionDetectionPrediction(AttributeDetectionPrediction):
     pass
+    pass

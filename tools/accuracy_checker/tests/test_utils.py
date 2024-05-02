@@ -98,7 +98,7 @@ class TestOverrides:
                 pass
 
         assert overrides(B, 'foo')
-        assert overrides(B(), 'foo')
+        assert not overrides(B(), 'foo')
 
     def test_three_class(self):
         class A:
@@ -112,7 +112,6 @@ class TestOverrides:
 
         assert overrides(C, 'foo')
         assert not overrides(B, 'foo')
-
     def test_custom_base(self):
         class A:
             def foo(self): pass

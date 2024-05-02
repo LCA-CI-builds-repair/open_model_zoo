@@ -22,7 +22,7 @@ try:
     from .caffe_launcher import CaffeLauncher
 except ImportError as import_error:
     CaffeLauncher = unsupported_launcher(
-        'caffe', "Caffe isn't installed. Please, install it before using. \n{}".format(import_error.msg)
+        'caffe', "Caffe isn't installed. Please, install it before using. \n{}".format(import_error)
     )
 
 try:

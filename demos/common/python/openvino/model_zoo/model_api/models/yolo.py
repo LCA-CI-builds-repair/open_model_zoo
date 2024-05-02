@@ -74,7 +74,6 @@ class YOLO(DetectionModel):
                 for idx in mask:
                     masked_anchors += [self.anchors[idx * 2], self.anchors[idx * 2 + 1]]
                 self.anchors = masked_anchors
-
                 self.use_input_size = True  # Weak way to determine but the only one.
 
     def __init__(self, model_adapter, configuration, preload=False):

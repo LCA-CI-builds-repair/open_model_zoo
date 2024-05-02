@@ -122,7 +122,7 @@ def main():
         assert sample_width == 2, "Only 16-bit WAV PCM supported"
         assert compression_type == 'NONE', "Only linear PCM WAV files supported"
         assert channel_num == 1, "Only mono WAV PCM supported"
-        assert sampling_rate == 16000, "Only 16 KHz audio supported"
+        assert sampling_rate == 16000, "Only 16 KHz audio is supported"
         audio = np.frombuffer(wave_read.readframes(pcm_length * channel_num), dtype=np.int16).reshape((pcm_length, channel_num))
 
     log_melspectrum = QuartzNet.audio_to_melspectrum(audio.flatten(), sampling_rate)

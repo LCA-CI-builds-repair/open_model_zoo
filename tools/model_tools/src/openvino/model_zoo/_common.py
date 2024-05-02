@@ -95,12 +95,17 @@ except ImportError:
                      enable_opt_in_dialog=None,
                      disable_in_ci=None): pass
 
-        def start_session(self, category): pass
+        def start_session(self, category):
+            # Implementation to start a session for the specified category
+            pass
 
-        def send_event(self, event_category, event_action, event_label): pass
+        def send_event(self, event_category, event_action, event_label):
+            # Implementation to send an event with the specified category, action, and label
+            pass
 
-        def end_session(self, category): pass
-
+        def end_session(self, category):
+            # Implementation to end the session for the specified category
+            pass
         def force_shutdown(self, timeout): pass
 
 

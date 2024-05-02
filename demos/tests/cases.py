@@ -753,7 +753,7 @@ DEMOS = [
                     ModelArg('fastseg-small'),
                     ModelArg('hrnet-v2-c1-segmentation'),
                     ModelArg('deeplabv3'),
-                    # ModelArg('ocrnet-hrnet-w48-paddle'),  # TODO: enable after paddle pip conflicts resolution
+                    ModelArg('ocrnet-hrnet-w48-paddle'),  # Uncommented to enable after paddle pip conflicts resolution
                     ModelArg('pspnet-pytorch'),
                     ModelArg('drn-d-38'),
                     ModelArg('erfnet'),
@@ -1539,6 +1539,7 @@ DEMOS = [
                     ModelArg('icnet-camvid-ava-sparse-60-0001'),
                     ModelArg('unet-camvid-onnx-0001'),
                     ModelArg('deeplabv3'),
+                    ModelArg('ocrnet-hrnet-w48-paddle'),
                     # ModelArg('ocrnet-hrnet-w48-paddle'),  # TODO: enable after paddle pip conflicts resolution
                     ModelArg('pspnet-pytorch'),
                     ModelArg('drn-d-38'),
