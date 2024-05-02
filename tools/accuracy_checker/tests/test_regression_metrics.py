@@ -399,7 +399,7 @@ class TestUpdateRegressionMetrics:
         config = [{'type': 'mse'}]
         dispatcher = MetricsExecutor(config, None)
 
-        metric_result, _ = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
+        metric_result = dispatcher.update_metrics_on_batch(range(len(annotations)), annotations, predictions)
         assert metric_result[0][0].result == 4
         assert metric_result[1][0].result == 16
 
