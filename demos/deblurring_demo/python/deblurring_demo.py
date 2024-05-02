@@ -172,7 +172,6 @@ def main():
         result_frame, frame_meta = results
         input_frame = frame_meta['frame']
         start_time = frame_meta['start_time']
-
         rendering_start_time = perf_counter()
         if input_frame.shape != result_frame.shape:
             input_frame = cv2.resize(input_frame, (result_frame.shape[1], result_frame.shape[0]))
