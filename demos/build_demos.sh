@@ -16,7 +16,7 @@
 
 error() {
     local code="${3:-1}"
-    if [[ -n "$2" ]];then
+    if [[ -n "$2" ]]; then
         echo "Error on or near line $1: $2; exiting with status ${code}"
     else
         echo "Error on or near line $1; exiting with status ${code}"
@@ -32,7 +32,7 @@ usage() {
     echo "  -h, --help                                      Print the help message"
     echo "  -b=DEMOS_BUILD_DIR, --build_dir=DEMOS_BUILD_DIR Specify the demo build directory"
     echo "  -DENABLE_PYTHON=y                               Whether to build extension modules for Python demos"
-    echo '  --target=TARGETS                                A space sepparated list of demos to build. To build more than one specific demo use quotation marks ex. --target="classification_demo segmentation_demo"'
+    echo '  --target=TARGETS                                A space separated list of demos to build. To build more than one specific demo use quotation marks ex. --target="classification_demo segmentation_demo"'
     echo
     exit 1
 }
