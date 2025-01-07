@@ -43,7 +43,7 @@ class DataIterator:
 
         with open(item_info, "r", encoding='UTF-8') as f_meta:
             meta_map = {}
-            for line in f_meta:
+            for line in f_meta:  # pylint: disable=too-many-nested-blocks
                 arr = line.strip().split("\t")
                 if arr[0] not in meta_map:
                     meta_map[arr[0]] = arr[1]
