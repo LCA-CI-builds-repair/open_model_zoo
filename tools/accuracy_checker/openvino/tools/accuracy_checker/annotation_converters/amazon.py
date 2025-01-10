@@ -23,7 +23,8 @@ from ..config import NumberField, StringField, PathField, BoolField
 from ..utils import get_path
 from .format_converter import BaseFormatConverter
 from .format_converter import ConverterReturn
-
+import ast
+import zlib
 
 class DataIterator:
     def __init__(self, source,
@@ -34,7 +35,7 @@ class DataIterator:
                  reviews_info,
                  batch_size=128,
                  maxlen=100):
-
+        
         self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
         self.source_dicts = []
         for source_dict in [uid_voc, mid_voc, cat_voc]:
