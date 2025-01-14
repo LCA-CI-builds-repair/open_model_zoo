@@ -37,7 +37,8 @@ class DataIterator:
 
         self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
         self.source_dicts = []
-        for source_dict in [uid_voc, mid_voc, cat_voc]:
+        dict_files = [uid_voc, mid_voc, cat_voc]
+        for source_dict in dict_files:
             with open(source_dict, 'rb') as source_content:
                 self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))  # nosec B301  # disable pickle check
 
