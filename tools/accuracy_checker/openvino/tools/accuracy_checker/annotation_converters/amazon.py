@@ -44,9 +44,9 @@ class DataIterator:
         with open(item_info, "r", encoding='UTF-8') as f_meta:
             meta_map = {}
             for line in f_meta:
-                arr = line.strip().split("\t")
-                if arr[0] not in meta_map:
-                    meta_map[arr[0]] = arr[1]
+                arr = line.strip().split("\t")  # Split the line into attributes
+                if arr[0] not in meta_map:      # Ensure unique keys are added
+                    meta_map[arr[0]] = arr[1]   # Map keys to their categories
         self.meta_id_map = {}
         for key, val in meta_map.items():
             if key in self.source_dicts[1]:
