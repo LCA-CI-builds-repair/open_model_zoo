@@ -46,6 +46,7 @@ class ModelEvaluator(BaseEvaluator):
         self.launcher = launcher
         self.input_feeder = input_feeder
         self.adapter = adapter
+        # pylint: disable=C0103
         self.preprocessor = preprocessor
         self.postprocessor = postprocessor
         self.dataset = dataset
