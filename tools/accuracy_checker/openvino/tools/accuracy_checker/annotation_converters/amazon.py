@@ -338,3 +338,122 @@ class AmazonProductData(BaseFormatConverter):
                 break
 
         return ConverterReturn(annotations, None, None)
+
+
+class AmazonProductDataFailed(BaseFormatConverter):
+
+    __provider__ = 'amazon_product_data_failed'
+    annotation_types = (ClassificationAnnotation, )
+
+    @classmethod
+    def parameters(cls):
+        parameters = super().parameters()
+        parameters.update({
+            "data_dir": PathField(optional=False, is_directory=True, check_exists=True,
+                                  description="Dataset root"),
+            "test_data": StringField(optional=True, default='local_test_splitByUser',
+                                     description="test data filename."),
+            "batch": NumberField(optional=True, default=1, description="Batch size", value_type=int),
+            "max_len": NumberField(optional=True, default=None, description="Maximum sequence length", value_type=int),
+            "subsample_size": NumberField(
+                optional=True, default=0, description="Number of sentences to process", value_type=int
+            ),
+        })
+
+    @staticmethod
+    def prepare_data(source, target, maxlen=None):
+        # x: a list of sentences
+        lengths_x = [len(s[4]) for s in source]
+        seqs_mid = [inp[3] for inp in source]
+        seqs_cat = [inp[4] for inp in source]
+        if maxlen is not None:
+            new_seqs_mid = []
+            new_seqs_cat = []
+            new_lengths_x = []
+            for l_x, inp in zip(lengths_x, source):
+                if l_x > maxlen:
+                    new_seqs_mid.append(inp[3][l_x - maxlen:])
+                    new_seqs_cat.append(inp[4][l_x - maxlen:])
+                    new_lengths_x.append(maxlen)
+                else:
+                    new_seqs_mid.append(inp[3])
+                    new_seqs_cat.append(inp[4])
+                    new_lengths_x.append(l_x)
+            lengths_x = new_lengths_x
+            seqs_mid = new_seqs_mid
+            seqs_cat = new_seqs_cat
+
+        n_samples = len(seqs_mid)
+        maxlen_x = np.max(lengths_x)
+        maxlen_x = max(maxlen, maxlen_x) if maxlen is not None else maxlen_x
+
+        mid_his = np.zeros((n_samples, maxlen_x)).astype('int64')
+        cat_his = np.zeros((n_samples, maxlen_x)).astype('int64')
+        mid_mask = np.zeros((n_samples, maxlen_x)).astype('float32')
+        for idx, [s_x, s_y] in enumerate(zip(seqs_mid, seqs_cat)):
+            mid_mask[idx, :lengths_x[idx]] = 1.
+            mid_his[idx, :lengths_x[idx]] = s_x
+            cat_his[idx, :lengths_x[idx]] = s_y
+
+        uids = np.array([inp[0] for inp in source])
+        mids = np.array([inp[1] for inp in source])
+        cats = np.array([inp[2] for inp in source])
+
+        return uids, mids, cats, mid_his, cat_his, mid_mask, np.array(target), np.array(lengths_x)
+
+    @classmethod
+    def convert(cls, check_content=False, **kwargs):
+        test_file = get_path(self.data_dir / self.test_data, is_directory=False)
+        uid_voc = get_path(self.data_dir / self.uid_voc, is_directory=False)
+        mid_voc = get_path(self.data_dir / self.mid_voc, is_directory=False)
+        cat_voc = get_path(self.data_dir / self.cat_voc, is_directory=False)
+        item_info = get_path(self.data_dir / self.item_info, is_directory=False)
+        reviews_info = get_path(self.data_dir / self.reviews_info, is_directory=False)
+        test_data = DataIterator(str(test_file), str(uid_voc), str(mid_voc), str(cat_voc), str(item_info),
+                                 str(reviews_info), cls.batch, cls.max_len)
+        preprocessed_folder = Path(self.preprocessed_dir)
+        if not cls.skip_dump and not preprocessed_folder.exists():
+            preprocessed_folder.mkdir(exist_ok=True, parents=True)
+        input_folder = preprocessed_folder / "bs{}".format(cls.batch) / 'input'
+        if not input_folder.exists() and not cls.skip_dump:
+            input_folder.mkdir(parents=True)
+        annotations = []
+        subfolder = 0
+        filecnt = 0
+        iteration = 0
+        for src, tgt in test_data:
+            uids, mids, cats, mid_his, cat_his, mid_mask, gt, sl = cls.prepare_data(src, tgt, maxlen=cls.max_len)
+            c_input = input_folder / "{:02d}".format(subfolder)
+            c_input = c_input / "{:06d}.npz".format(iteration)
+            if not cls.skip_dump:
+                if not c_input.parent.exists():
+                    c_input.parent.mkdir(parents=True)
+                sample = {
+                    cls.mid_his_batch: mid_his,
+                    cls.cat_his_batch: cat_his,
+                    cls.uid_batch: uids,
+                    cls.mid_batch: mids,
+                    cls.cat_batch: cats,
+                    cls.mask: mid_mask,
+                    cls.seq_len: sl
+                }
+                np.savez_compressed(str(c_input), **sample)
+            filecnt += 1
+            filecnt %= 0x100
+            subfolder = subfolder + 1 if filecnt == 0 else subfolder
+            c_file = str(c_input.relative_to(preprocessed_folder))
+            identifiers = [
+                "{}_{}{}".format(cls.mid_his_batch, cls.separator, c_file),
+                "{}_{}{}".format(cls.cat_his_batch, cls.separator, c_file),
+                "{}_{}{}".format(cls.uid_batch, cls.separator, c_file),
+                "{}_{}{}".format(cls.mid_batch, cls.separator, c_file),
+                "{}_{}{}".format(cls.cat_batch, cls.separator, c_file),
+                "{}_{}{}".format(cls.mask, cls.separator, c_file),
+                "{}_{}{}".format(cls.seq_len, cls.separator, c_file),
+            ]
+            if not cls.subsample_size or (cls.subsample_size and (iteration < cls.subsample_size)):
+                annotations.append(ClassificationAnnotation(identifiers, gt[:, 0].tolist()))
+            iteration += 1
+            if cls.subsample_size and (iteration > cls.subsample_size):
+                break
+        return ConverterReturn(annotations, "Failed", None)
