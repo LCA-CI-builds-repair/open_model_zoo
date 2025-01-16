@@ -102,8 +102,9 @@ class DataIterator:
 
         if len(self.source_buffer) == 0:
             for _ in range(self.k):
-                ss = self.source.readline()
-                if ss == "":
+                try:
+                    ss = self.source.readline()
+                except EOFError:
                     break
                 self.source_buffer.append(ss.strip("\n").split("\t"))
 
