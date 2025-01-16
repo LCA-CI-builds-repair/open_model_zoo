@@ -17,7 +17,7 @@ limitations under the License.
 import pickle  # nosec B403  # disable import-pickle check
 from pathlib import Path
 import numpy as np
-
+ 
 from ..representation import ClassificationAnnotation
 from ..config import NumberField, StringField, PathField, BoolField
 from ..utils import get_path
