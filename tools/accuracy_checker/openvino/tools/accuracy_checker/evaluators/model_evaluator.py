@@ -253,6 +253,9 @@ class ModelEvaluator(BaseEvaluator):
         return filled_inputs, batch_meta, inputs_template
 
     def process_dataset_async(self, stored_predictions, progress_reporter, *args, **kwargs):
+    if isinstance(self.launcher, DummyLauncher):
+        self._load_stored_predictions(stored_predictions, progress_reporter)
+        return self._annotations, self._predictions
         def prepare_dataset(store_only_mode):
             if self.dataset is None:
                 raise ConfigError('dataset entry is not assigned for execution')
@@ -349,7 +352,9 @@ class ModelEvaluator(BaseEvaluator):
     def process_dataset_async_infer_queue(
         self, dataset_iterator, metric_config, progress_reporter, stored_predictions, **kwargs):
 
-        def completion_callback(request, user_data):
+        def completion_callback(user_data):
+        batch_id, batch_input_ids, batch_annotation, batch_identifiers, batch_meta = user_data
+        batch_raw_predictions = self.launcher.get_result_from_request(request)
             batch_id, batch_input_ids, batch_annotation, batch_identifiers, batch_meta = user_data
             batch_raw_predictions = self.launcher.get_result_from_request(request)
             if stored_predictions:
@@ -489,6 +494,11 @@ class ModelEvaluator(BaseEvaluator):
         return annotations, predictions
 
     def _fill_free_irs(self, free_irs, queued_irs, infer_requests_pool, dataset_iterator):
+    for ir_id in free_irs:
+        try:
+            batch_id, (batch_input_ids, batch_annotation, batch_input, _) = next(dataset_iterator)
+        except StopIteration:
+            break
         for ir_id in free_irs:
             try:
                 batch_id, (batch_input_ids, batch_annotation, batch_input, _) = next(dataset_iterator)
