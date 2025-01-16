@@ -336,5 +336,8 @@ class AmazonProductData(BaseFormatConverter):
             iteration += 1
             if self.subsample_size and (iteration > self.subsample_size):
                 break
+            iteration += 1
+            if self.subsample_size and (iteration > self.subsample_size):
+                break
 
         return ConverterReturn(annotations, None, None)
