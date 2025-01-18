@@ -651,7 +651,7 @@ class ModelEvaluator(BaseEvaluator):
                 enable_profiling = False
         compute_intermediate_metric_res = config.get('intermediate_metrics_results', False)
         if compute_intermediate_metric_res and store_only:
-            warning("Metric calculation disabled for prediction storing mode")
+            warning("Metric calculation disabled for prediction") storing mode")
             compute_intermediate_metric_res = False
         metric_interval, ignore_results_formatting = None, None
         if compute_intermediate_metric_res:
