@@ -35,7 +35,8 @@ class DataIterator:
                  batch_size=128,
                  maxlen=100):
 
-        self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
+        self.source = open(source, 'r', encoding='UTF-8')
+        # pylint: disable=R1732  # disable import-pickle check
         self.source_dicts = []
         for source_dict in [uid_voc, mid_voc, cat_voc]:
             with open(source_dict, 'rb') as source_content:
@@ -297,7 +298,9 @@ class AmazonProductData(BaseFormatConverter):
         iteration = 0
 
         for src, tgt in test_data:
-            uids, mids, cats, mid_his, cat_his, mid_mask, gt, sl = self.prepare_data(src, tgt, maxlen=self.max_len)
+            uids, mids, cats, mid_his, cat_his, mid_mask, gt, sl = (
+        self.prepare_data(src, tgt, maxlen=self.max_len)
+    )
             c_input = input_folder / "{:02d}".format(subfolder)
             c_input = c_input / "{:06d}.npz".format(iteration)
 
