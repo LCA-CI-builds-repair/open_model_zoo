@@ -334,7 +334,7 @@ class AmazonProductData(BaseFormatConverter):
             if not self.subsample_size or (self.subsample_size and (iteration < self.subsample_size)):
                 annotations.append(ClassificationAnnotation(identifiers, gt[:, 0].tolist()))
             iteration += 1
-            if self.subsample_size and (iteration > self.subsample_size):
+            if self.subsample_size and iteration > self.subsample_size:
                 break
 
         return ConverterReturn(annotations, None, None)
