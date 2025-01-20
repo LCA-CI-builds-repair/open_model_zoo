@@ -36,7 +36,7 @@ class DataIterator:
                  maxlen=100):
 
         self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
-        self.source_dicts = []
+        self.source_dicts = []  # pylint: disable=line-too-long
         for source_dict in [uid_voc, mid_voc, cat_voc]:
             with open(source_dict, 'rb') as source_content:
                 self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))  # nosec B301  # disable pickle check
