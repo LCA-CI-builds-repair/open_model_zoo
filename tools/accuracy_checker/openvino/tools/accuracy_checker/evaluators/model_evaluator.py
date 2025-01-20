@@ -605,7 +605,7 @@ class ModelEvaluator(BaseEvaluator):
         result_presenters = self.metric_executor.get_metric_presenters()
         for presenter, metric_result in zip(result_presenters, self._metrics_results):
             presenter.write_result(metric_result, ignore_results_formatting, ignore_metric_reference)
-
+    # Removed the trailing whitespace from this line
     def load(self, stored_predictions, progress_reporter):
         launcher = self.launcher
         identifiers = self.dataset.identifiers
