@@ -45,6 +45,9 @@ class DataIterator:
             meta_map = {}
             for line in f_meta:
                 arr = line.strip().split("\t")
+                if len(arr) < 2:
+                    # Skip lines with less than 2 columns
+                    continue
                 if arr[0] not in meta_map:
                     meta_map[arr[0]] = arr[1]
         self.meta_id_map = {}
