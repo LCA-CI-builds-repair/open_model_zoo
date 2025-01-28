@@ -299,7 +299,8 @@ class AmazonProductData(BaseFormatConverter):
         for src, tgt in test_data:
             uids, mids, cats, mid_his, cat_his, mid_mask, gt, sl = self.prepare_data(src, tgt, maxlen=self.max_len)
             c_input = input_folder / "{:02d}".format(subfolder)
-            c_input = c_input / "{:06d}.npz".format(iteration)
+            file_name = "{:06d}.npz".format(iteration)
+            c_input = c_input / file_name
 
             if not self.skip_dump:
                 if not c_input.parent.exists():
