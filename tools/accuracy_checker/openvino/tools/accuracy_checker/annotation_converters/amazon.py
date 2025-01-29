@@ -34,8 +34,9 @@ class DataIterator:
                  reviews_info,
                  batch_size=128,
                  maxlen=100):
-
-        self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
+        self.source = open(
+            source, 'r', encoding='UTF-8'
+        )  # pylint: disable=R1732
         self.source_dicts = []
         for source_dict in [uid_voc, mid_voc, cat_voc]:
             with open(source_dict, 'rb') as source_content:
