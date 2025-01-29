@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import pickle  # nosec B403  # disable import-pickle check
+import pickle # nosec B403, B301  # disable import-pickle, pickle checks
 from pathlib import Path
 import numpy as np
 
@@ -38,7 +38,7 @@ class DataIterator:
         self.source = open(source, 'r', encoding='UTF-8') # pylint: disable=R1732
         self.source_dicts = []
         for source_dict in [uid_voc, mid_voc, cat_voc]:
-            with open(source_dict, 'rb') as source_content:
+            with open(source_dict, 'rb') as source_content: # nosec B301
                 self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))  # nosec B301  # disable pickle check
 
         with open(item_info, "r", encoding='UTF-8') as f_meta:
