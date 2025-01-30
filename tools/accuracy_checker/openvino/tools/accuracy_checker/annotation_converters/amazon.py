@@ -200,8 +200,8 @@ class AmazonProductData(BaseFormatConverter):
             "cat_batch": StringField(optional=True, default="Inputs/cat_batch_ph",
                                      description="cat_batch input identifier"),
             "mask": StringField(optional=True, default="Inputs/mask",
-                                description="mask input identifier"),
-            "seq_len": StringField(optional=True, default="Inputs / seq_len_ph",
+                                description="mask input identifier"), 
+            "seq_len": StringField(optional=True, default="Inputs/seq_len_ph",
                                    description="seq_len input identifier"),
             "skip_dump": BoolField(optional=True, default=True, description='Annotate without saving features')
         })
