@@ -41,8 +41,8 @@ class DataIterator:
             with open(source_dict, 'rb') as source_content:
                 self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))  # nosec B301  # disable pickle check
 
+        meta_map = {}
         with open(item_info, "r", encoding='UTF-8') as f_meta:
-            meta_map = {}
             for line in f_meta:
                 arr = line.strip().split("\t")
                 if arr[0] not in meta_map:
